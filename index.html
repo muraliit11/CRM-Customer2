@@ -342,8 +342,8 @@ __h("div",{style:{flex:"2 1 200px",minWidth:0,fontSize:12.5,color:"#4A5560",font
 __h("div",{style:{flex:"1 1 120px",fontSize:12.5}},eng?eng:__h("span",{style:{color:"#7A4A00",fontWeight:600}},"No engineer")),
 __h("div",{style:{flex:"1 1 150px",fontSize:12}},__h("div",null,wa(t.openedDate)),(()=>{let A=__tkAge(t);return A?__h("div",{style:{color:A.color,fontWeight:A.bold?600:400}},A.text):null})()),
 __h("div",{style:{display:"flex",alignItems:"center",gap:6,flexShrink:0}},payPending?__h("span",{style:{...pill,background:"#F8DEDB",color:"#9A2018",fontWeight:500}},"₹ due"):null,__h("span",{style:{...pill,background:st.bg,color:st.fg,minWidth:88}},st.label),p?__h("a",{href:"tel:+"+p,onClick:stop,title:"Call",style:{...pill,background:"#20303D",color:"#fff"}},"Call"):null,p?__h("a",{href:"https://wa.me/"+p+"?text="+encodeURIComponent(msg),target:"_blank",rel:"noopener",onClick:e=>{stop(e);if(window.__waOpenUpd){e.preventDefault();window.__waOpenUpd(t.id)}},title:"Send status update on WhatsApp",style:{...pill,background:"#1E7E45",color:"#fff"}},"WA"):null,onEdit?__h("button",{type:"button","aria-label":"Edit ticket",title:"Edit",onClick:e=>{stop(e);onEdit()},style:{...pill,border:"1px solid #D8D3C4",background:"#fff",color:"#55606B",cursor:"pointer",fontFamily:"inherit"}},"✎"):null),(()=>{let nt=__tkLastNote(t);return nt?__h("div",{title:t.notes,style:{flexBasis:"100%",paddingLeft:58,fontSize:12.5,color:"#3E4A55",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}},__h("span",{style:{fontWeight:600,color:"#6B6455"}},"Latest note: "),nt):null})())}
-function __TkList({items,all,tab,mk}){let ls=(()=>{try{return localStorage.getItem("slec_tk_view")}catch(e){return null}})();let[v,setV]=(0,qe.useState)("list"),[lim,setLim]=(0,qe.useState)(null);let page=v==="list"?50:24,shown=lim||page;(0,qe.useEffect)(()=>{setLim(null)},[items.length,tab,v]);let setView=x=>{setV(x);try{localStorage.setItem("slec_tk_view",x)}catch(e){}};let N=__tkNums(all),groups=!tab||tab==="__active",out=[],prev=null,counts={};items.forEach(t=>{let k=t.status||"Open";counts[k]=(counts[k]||0)+1});
-items.slice(0,shown).forEach(t=>{let k=t.status||"Open";if(groups&&k!==prev){let st=__tkSt(k);out.push(__h("div",{key:"h-"+k,style:{gridColumn:"1 / -1",display:"flex",alignItems:"center",gap:8,margin:out.length?"10px 0 2px":"0 0 2px",fontSize:12,fontWeight:700,letterSpacing:".06em",textTransform:"uppercase",color:st.fg}},__h("span",{style:{width:8,height:8,borderRadius:"50%",background:st.dot}}),st.label+" \xB7 "+counts[k]));prev=k}let pr={...mk(t),no:N.get(t.id)||"-",key:t.id};out.push(v==="list"?(0,B.jsx)(__TkRow,pr,t.id):(0,B.jsx)(__TkCard,pr,t.id))});
+function __TkList({items,all,tab,mk}){let ls=(()=>{try{return localStorage.getItem("slec_tk_view")}catch(e){return null}})();let[v,setV]=(0,qe.useState)("list"),[lim,setLim]=(0,qe.useState)(null);let page=v==="list"?50:24,shown=lim||page;(0,qe.useEffect)(()=>{setLim(null)},[items.length,tab,v]);let setView=x=>{setV(x);try{localStorage.setItem("slec_tk_view",x)}catch(e){}};window.__tkCtx=items.length===1?items[0].id:(window.__tkCtxClick&&items.some(x=>x.id===window.__tkCtxClick)?window.__tkCtxClick:null);let N=__tkNums(all),groups=!tab||tab==="__active",out=[],prev=null,counts={};items.forEach(t=>{let k=t.status||"Open";counts[k]=(counts[k]||0)+1});
+items.slice(0,shown).forEach(t=>{let k=t.status||"Open";if(groups&&k!==prev){let st=__tkSt(k);out.push(__h("div",{key:"h-"+k,style:{gridColumn:"1 / -1",display:"flex",alignItems:"center",gap:8,margin:out.length?"10px 0 2px":"0 0 2px",fontSize:12,fontWeight:700,letterSpacing:".06em",textTransform:"uppercase",color:st.fg}},__h("span",{style:{width:8,height:8,borderRadius:"50%",background:st.dot}}),st.label+" \xB7 "+counts[k]));prev=k}let pr={...mk(t),no:N.get(t.id)||"-",key:t.id};{let o1=pr.onOpen,e1=pr.onEdit;pr.onOpen=()=>{window.__tkCtxClick=t.id;o1&&o1()};if(e1)pr.onEdit=()=>{window.__tkCtxClick=t.id;e1()}}out.push(v==="list"?(0,B.jsx)(__TkRow,pr,t.id):(0,B.jsx)(__TkCard,pr,t.id))});
 let tb=(x,label)=>__h("button",{type:"button","aria-pressed":v===x,onClick:()=>setView(x),style:{height:32,padding:"0 12px",border:0,borderRadius:6,background:v===x?"#20303D":"transparent",color:v===x?"#fff":"#20303D",fontSize:12.5,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}},label);
 return __h("div",{style:{gridColumn:"1 / -1"}},
 __h("div",{style:{display:"flex",justifyContent:"flex-end",alignItems:"center",gap:10,marginBottom:10}},__h("span",{style:{fontSize:12,color:"#6B6455"}},"View"),__h("div",{style:{display:"inline-flex",gap:2,padding:2,border:"1px solid #D8D3C4",borderRadius:8,background:"#fff"}},tb("cards","Cards"),tb("list","List"))),
@@ -2190,7 +2190,8 @@ lucide-react/dist/esm/lucide-react.mjs:
   var box = ov.firstChild;
   ov.addEventListener("click", function (e) { if (e.target === ov) close(); });
   function close() { ov.style.display = "none"; }
-  fab.onclick = function () { ov.style.display = "flex"; renderNew(); };
+  fab.onclick = function () { ov.style.display = "flex"; var c = ctxTicket(); if (c) renderUpd(c.id); else renderNew(); };
+  function ctxTicket() { var id = window.__tkCtx; return id ? (data().tickets || []).find(function (t) { return t.id === id; }) : null; }
   window.__waOpenUpd = function (id) { ov.style.display = "flex"; renderUpd(id); };
 
   /* show button only when signed in to the CRM */
@@ -2227,7 +2228,7 @@ lucide-react/dist/esm/lucide-react.mjs:
   /* ---------- New ticket ---------- */
   function renderNew() {
     box.innerHTML = header("new") +
-      '<label>Client mobile number (from WhatsApp)</label><input id="waNum" placeholder="e.g. +91 98419 27310" inputmode="tel">' +
+      '<label>Client mobile number (or client name)</label><input id="waNum" placeholder="e.g. 99404 91206 or Murali">' +
       '<div id="waMatch" class="waNote">Type or paste the number — the client is found automatically.</div>' +
       '<label>Client (matched by mobile number)</label><select id="waCli" disabled><option value="">— Enter a registered mobile number —</option></select>' +
       '<label>Instrument</label><select id="waInst">' + instOptions("", "") + "</select>" +
@@ -2258,6 +2259,14 @@ lucide-react/dist/esm/lucide-react.mjs:
     }
     num.oninput = function () {
       var n = norm10(num.value), found = n ? findClients(n) : [];
+      var nm = num.value.trim().toLowerCase();
+      if (!n && /[a-z]/i.test(nm) && nm.length >= 3) {
+        var byName = (data().clients || []).filter(function (c) { return String(c.name || "").toLowerCase().indexOf(nm) >= 0 || String(c.contact || "").toLowerCase().indexOf(nm) >= 0; });
+        match.className = byName.length ? "waNote waOk" : "waNote waBad";
+        match.textContent = byName.length ? "✓ Found by name: " + byName.slice(0, 3).map(function (c) { return c.name + (phonesOf(c)[0] ? " (" + phonesOf(c)[0] + ")" : ""); }).join(", ") + (byName.length > 3 ? " …" : "") : "✗ No client with that name.";
+        setClients(byName.slice(0, 20));
+        return;
+      }
       if (!n) { match.className = "waNote"; match.textContent = "Type or paste the number — the client is found automatically."; }
       else if (found.length === 1) { match.className = "waNote waOk"; match.textContent = "✓ Matched: " + found[0].name + (found[0].contact ? " · " + found[0].contact : ""); }
       else if (found.length > 1) { match.className = "waNote waOk"; match.textContent = "✓ " + found.length + " clients share this number — choose which one."; }
@@ -2280,6 +2289,8 @@ lucide-react/dist/esm/lucide-react.mjs:
       issue.value = first.length > 70 ? first.slice(0, 67) + "…" : first;
     };
     issue.oninput = function () { issueTouched = true; };
+    (function () { var cx = ctxTicket(), c = cx && clientById(cx.clientId), p = c && phonesOf(c)[0];
+      if (p) { num.value = p; num.oninput(); var h = document.createElement("div"); h.className = "waNote"; h.textContent = "Filled from ticket " + ref(cx) + " in view — clear it to enter another number."; match.parentNode.insertBefore(h, match.nextSibling); } })();
     box.querySelector("#waCancel").onclick = close;
     box.querySelector("#waCreate").onclick = function () {
       var n0 = norm10(num.value), ok = n0 && findClients(n0).some(function (c) { return c.id === cli.value; });
@@ -2314,6 +2325,7 @@ lucide-react/dist/esm/lucide-react.mjs:
 
   /* ---------- Send update ---------- */
   function renderUpd(preId) {
+    if (!preId) { var cx = ctxTicket(); if (cx) preId = cx.id; }
     var ts = (data().tickets || []).slice().sort(function (a, b) {
       var ra = a.status === "Resolved" ? 1 : 0, rb = b.status === "Resolved" ? 1 : 0;
       return ra - rb || String(b.openedDate || "").localeCompare(String(a.openedDate || ""));
