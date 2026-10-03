@@ -2152,13 +2152,21 @@ lucide-react/dist/esm/lucide-react.mjs:
       "\nIssue: " + t.issue +
       "\n\nOur engineer will contact you shortly.\n\n– " + sig();
   }
-  function updateMsg(c, t, status, note) {
+  /* latest customer-relevant line of the notes, without numbering / internal WhatsApp log lines */
+  function cleanNote(t) {
+    var ls = String(t.notes || "").split(/\r?\n/).map(function (x) { return x.trim(); }).filter(function (x) {
+      return x && !/WhatsApp (update|ref)\b/i.test(x);
+    });
+    if (!ls.length) return "";
+    return ls[ls.length - 1].replace(/^\s*\d{1,3}\s*[>.)\-:]\s*/, "").trim();
+  }
+  function updateMsg(c, t, status, note, latest) {
     var head = "Dear " + greetName(c) + ",\n\nUpdate on your service request " + ref(t) + " (" + t.issue + "):\n";
     var body = status === "Resolved" ? "The issue has been resolved. Thank you for your patience."
       : status === "In Progress" ? "Our engineer is now working on it."
       : status === "On Hold" ? "Your job is on hold, waiting for spare parts / your approval. We will update you soon."
       : "Your request is registered and waiting for an engineer.";
-    return head + body + (note ? "\n" + note : "") + "\n\n– " + sig();
+    return head + body + (latest ? "\nPresent status: " + latest : "") + (note ? "\n" + note : "") + "\n\n– " + sig();
   }
 
   /* ---------- styles ---------- */
@@ -2342,7 +2350,8 @@ lucide-react/dist/esm/lucide-react.mjs:
       '<select id="waS" style="display:none"><option>Open</option><option>In Progress</option><option>On Hold</option><option>Resolved</option></select>' +
       '<label>Extra note (optional — also added to ticket notes)</label><input id="waN" placeholder="e.g. Battery replaced, under observation 12 hrs">' +
       '<label>Send to</label><input id="waTo" inputmode="tel"><div id="waAlt" class="waNote"></div>' +
-      '<label>Message (you can edit)</label><textarea id="waTxt" style="min-height:150px"></textarea>' +
+      '<label style="display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-size:13px;color:#20303D;margin-top:12px"><input type="checkbox" id="waL" checked style="width:auto;margin:0"> Include latest note as “Present status” in the message</label>' +
+      '<label>Message (you can edit)</label><textarea id="waTxt" style="min-height:170px"></textarea>' +
       '<div class="waRow"><button class="waBtn g" id="waGo">Update ticket &amp; send</button><button class="waBtn o" id="waOnly">Send only</button><button class="waBtn o" id="waClose">Close</button></div>' +
       '<div id="waRes" class="waNote">“Update ticket &amp; send” also changes the status in the CRM.</div>';
     wireHeader();
@@ -2384,8 +2393,9 @@ lucide-react/dist/esm/lucide-react.mjs:
       var ln = lastNote(t), i = instById(t.instrumentId);
       info.innerHTML = "<b>" + esc(c ? c.name : "?") + "</b>" + (i ? " · " + esc(instLabel(i)) : "") + " · now <b>" + esc(LBL[t.status] || t.status || "Open") + "</b>" +
         (ln ? '<br><span style="color:#55606B">Latest note:</span> ' + esc(ln) : "");
-      txt.value = updateMsg(c, t, sSel.value, note.value.trim());
+      txt.value = updateMsg(c, t, sSel.value, note.value.trim(), box.querySelector("#waL").checked ? cleanNote(t) : "");
     }
+    box.querySelector("#waL").onchange = function () { fill(false); };
     fillOptions(preId);
     if (!preId && ts.length) { var first = ts[0]; tSel.value = first.id; }
     q.oninput = function () { var k = tSel.value; fillOptions(k); fill(true); };
