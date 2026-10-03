@@ -326,7 +326,7 @@ __h("div",{style:{fontSize:13,color:"#4A5560",fontFamily:"'IBM Plex Mono', monos
 (()=>{let nt=__tkLastNote(t);return nt?__h("div",{title:t.notes,style:{fontSize:13,color:"#3E4A55",background:"#F1EDE3",borderRadius:6,padding:"6px 9px",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical",overflow:"hidden"}},__h("span",{style:{fontWeight:600,color:"#6B6455"}},"Latest note: "),nt):null})(),__h("div",{style:{display:"flex",flexWrap:"wrap",gap:6}},eng?__h("span",{style:chip},"Engineer: "+eng):__h("span",{style:warn},"No engineer"),__h("span",{style:chip},wa(t.openedDate)),(()=>{let A=__tkAge(t);return A?__h("span",{style:{...chip,color:A.color,fontWeight:A.bold?600:400}},A.text):null})(),payPending?__h("span",{style:bad},"Payment pending"):null)),
 __h("div",{style:{display:"grid",gridTemplateColumns:"repeat(3, minmax(0, 1fr))",borderTop:"1px solid #D8D3C4"}},
 p?__h("a",{href:"tel:+"+p,onClick:stop,style:{...act,borderRight:"1px solid #D8D3C4"}},"Call"):__h("span",{style:{...act,borderRight:"1px solid #D8D3C4",color:"#9A9384",cursor:"default"},title:"Add a mobile number to this client"},"No mobile"),
-p?__h("a",{href:"https://wa.me/"+p+"?text="+encodeURIComponent(msg),target:"_blank",rel:"noopener",onClick:stop,style:{...act,color:"#1E7E45",borderRight:"1px solid #D8D3C4"}},"WhatsApp"):__h("span",{style:{...act,borderRight:"1px solid #D8D3C4",color:"#9A9384",cursor:"default"}},"WhatsApp"),
+p?__h("a",{href:"https://wa.me/"+p+"?text="+encodeURIComponent(msg),target:"_blank",rel:"noopener",onClick:e=>{stop(e);if(window.__waOpenUpd){e.preventDefault();window.__waOpenUpd(t.id)}},style:{...act,color:"#1E7E45",borderRight:"1px solid #D8D3C4"}},"WhatsApp"):__h("span",{style:{...act,borderRight:"1px solid #D8D3C4",color:"#9A9384",cursor:"default"}},"WhatsApp"),
 __h("button",{type:"button",onClick:onOpen,style:act},"Open ›")))}
 var __tkRankMap={"Open":0,"In Progress":1,"On Hold":2,"Resolved":3};
 function __tkRank(t){let r=__tkRankMap[t.status||"Open"];return r==null?0:r}
@@ -341,7 +341,7 @@ __h("div",{style:{flex:"2 1 220px",minWidth:0}},__h("div",{style:{fontSize:14,fo
 __h("div",{style:{flex:"2 1 200px",minWidth:0,fontSize:12.5,color:"#4A5560",fontFamily:"'IBM Plex Mono', monospace",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}},inst||"-"),
 __h("div",{style:{flex:"1 1 120px",fontSize:12.5}},eng?eng:__h("span",{style:{color:"#7A4A00",fontWeight:600}},"No engineer")),
 __h("div",{style:{flex:"1 1 150px",fontSize:12}},__h("div",null,wa(t.openedDate)),(()=>{let A=__tkAge(t);return A?__h("div",{style:{color:A.color,fontWeight:A.bold?600:400}},A.text):null})()),
-__h("div",{style:{display:"flex",alignItems:"center",gap:6,flexShrink:0}},payPending?__h("span",{style:{...pill,background:"#F8DEDB",color:"#9A2018",fontWeight:500}},"₹ due"):null,__h("span",{style:{...pill,background:st.bg,color:st.fg,minWidth:88}},st.label),p?__h("a",{href:"tel:+"+p,onClick:stop,title:"Call",style:{...pill,background:"#20303D",color:"#fff"}},"Call"):null,p?__h("a",{href:"https://wa.me/"+p+"?text="+encodeURIComponent(msg),target:"_blank",rel:"noopener",onClick:stop,title:"WhatsApp",style:{...pill,background:"#1E7E45",color:"#fff"}},"WA"):null,onEdit?__h("button",{type:"button","aria-label":"Edit ticket",title:"Edit",onClick:e=>{stop(e);onEdit()},style:{...pill,border:"1px solid #D8D3C4",background:"#fff",color:"#55606B",cursor:"pointer",fontFamily:"inherit"}},"✎"):null),(()=>{let nt=__tkLastNote(t);return nt?__h("div",{title:t.notes,style:{flexBasis:"100%",paddingLeft:58,fontSize:12.5,color:"#3E4A55",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}},__h("span",{style:{fontWeight:600,color:"#6B6455"}},"Latest note: "),nt):null})())}
+__h("div",{style:{display:"flex",alignItems:"center",gap:6,flexShrink:0}},payPending?__h("span",{style:{...pill,background:"#F8DEDB",color:"#9A2018",fontWeight:500}},"₹ due"):null,__h("span",{style:{...pill,background:st.bg,color:st.fg,minWidth:88}},st.label),p?__h("a",{href:"tel:+"+p,onClick:stop,title:"Call",style:{...pill,background:"#20303D",color:"#fff"}},"Call"):null,p?__h("a",{href:"https://wa.me/"+p+"?text="+encodeURIComponent(msg),target:"_blank",rel:"noopener",onClick:e=>{stop(e);if(window.__waOpenUpd){e.preventDefault();window.__waOpenUpd(t.id)}},title:"Send status update on WhatsApp",style:{...pill,background:"#1E7E45",color:"#fff"}},"WA"):null,onEdit?__h("button",{type:"button","aria-label":"Edit ticket",title:"Edit",onClick:e=>{stop(e);onEdit()},style:{...pill,border:"1px solid #D8D3C4",background:"#fff",color:"#55606B",cursor:"pointer",fontFamily:"inherit"}},"✎"):null),(()=>{let nt=__tkLastNote(t);return nt?__h("div",{title:t.notes,style:{flexBasis:"100%",paddingLeft:58,fontSize:12.5,color:"#3E4A55",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}},__h("span",{style:{fontWeight:600,color:"#6B6455"}},"Latest note: "),nt):null})())}
 function __TkList({items,all,tab,mk}){let ls=(()=>{try{return localStorage.getItem("slec_tk_view")}catch(e){return null}})();let[v,setV]=(0,qe.useState)("list"),[lim,setLim]=(0,qe.useState)(null);let page=v==="list"?50:24,shown=lim||page;(0,qe.useEffect)(()=>{setLim(null)},[items.length,tab,v]);let setView=x=>{setV(x);try{localStorage.setItem("slec_tk_view",x)}catch(e){}};let N=__tkNums(all),groups=!tab||tab==="__active",out=[],prev=null,counts={};items.forEach(t=>{let k=t.status||"Open";counts[k]=(counts[k]||0)+1});
 items.slice(0,shown).forEach(t=>{let k=t.status||"Open";if(groups&&k!==prev){let st=__tkSt(k);out.push(__h("div",{key:"h-"+k,style:{gridColumn:"1 / -1",display:"flex",alignItems:"center",gap:8,margin:out.length?"10px 0 2px":"0 0 2px",fontSize:12,fontWeight:700,letterSpacing:".06em",textTransform:"uppercase",color:st.fg}},__h("span",{style:{width:8,height:8,borderRadius:"50%",background:st.dot}}),st.label+" \xB7 "+counts[k]));prev=k}let pr={...mk(t),no:N.get(t.id)||"-",key:t.id};out.push(v==="list"?(0,B.jsx)(__TkRow,pr,t.id):(0,B.jsx)(__TkCard,pr,t.id))});
 let tb=(x,label)=>__h("button",{type:"button","aria-pressed":v===x,onClick:()=>setView(x),style:{height:32,padding:"0 12px",border:0,borderRadius:6,background:v===x?"#20303D":"transparent",color:v===x?"#fff":"#20303D",fontSize:12.5,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}},label);
@@ -2086,7 +2086,12 @@ lucide-react/dist/esm/lucide-react.mjs:
   function nowLocal() { var t = new Date(); return t.getFullYear() + "-" + pad(t.getMonth() + 1) + "-" + pad(t.getDate()) + "T" + pad(t.getHours()) + ":" + pad(t.getMinutes()); }
   function niceNow() { return new Date().toLocaleString("en-IN", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" }); }
   function newId() { return Math.random().toString(36).slice(2, 10); }
-  function ref(t) { return "#" + String(t.id || "").slice(0, 6).toUpperCase(); }
+  function ref(t) {
+    var all = (window.__crmData && window.__crmData.tickets) || [];
+    var n = window.__tkNums ? window.__tkNums(all).get(t.id) : null;
+    if (n) return "#" + n;
+    return all.some(function (x) { return x.id === t.id; }) ? "#" + String(t.id || "").slice(0, 6).toUpperCase() : "#" + (all.length + 1);
+  }
 
   /* 10-digit Indian mobile from any text: "+91 98419 27310" -> "9841927310" */
   function norm10(s) {
@@ -2186,6 +2191,7 @@ lucide-react/dist/esm/lucide-react.mjs:
   ov.addEventListener("click", function (e) { if (e.target === ov) close(); });
   function close() { ov.style.display = "none"; }
   fab.onclick = function () { ov.style.display = "flex"; renderNew(); };
+  window.__waOpenUpd = function (id) { ov.style.display = "flex"; renderUpd(id); };
 
   /* show button only when signed in to the CRM */
   setInterval(function () {
@@ -2307,35 +2313,74 @@ lucide-react/dist/esm/lucide-react.mjs:
   }
 
   /* ---------- Send update ---------- */
-  function renderUpd() {
+  function renderUpd(preId) {
     var ts = (data().tickets || []).slice().sort(function (a, b) {
       var ra = a.status === "Resolved" ? 1 : 0, rb = b.status === "Resolved" ? 1 : 0;
       return ra - rb || String(b.openedDate || "").localeCompare(String(a.openedDate || ""));
     });
+    var LBL = { "Open": "Open", "In Progress": "In progress", "On Hold": "On hold", "Resolved": "Completed" };
+    function optLabel(t) { var c = clientById(t.clientId); return ref(t) + " · " + (c ? c.name : "?") + " · " + t.issue + " · " + (LBL[t.status] || t.status || "Open"); }
+    function lastNote(t) { var ls = String(t.notes || "").split(/\r?\n/).map(function (x) { return x.trim(); }).filter(Boolean); return ls.length ? ls[ls.length - 1] : ""; }
     box.innerHTML = header("upd") +
       (ts.length ? "" : '<div class="waCard">No tickets yet.</div>') +
-      '<label>Ticket</label><select id="waT">' + ts.map(function (t) {
-        var c = clientById(t.clientId);
-        return '<option value="' + esc(t.id) + '">' + esc(ref(t) + " · " + (c ? c.name : "?") + " · " + t.issue + " · " + t.status) + "</option>";
-      }).join("") + "</select>" +
-      '<label>New status</label><select id="waS"><option>Open</option><option>In Progress</option><option>On Hold</option><option>Resolved</option></select>' +
-      '<label>Extra note (optional)</label><input id="waN" placeholder="e.g. Engineer Ravi will visit tomorrow 11am">' +
-      '<label>Send to</label><input id="waTo" inputmode="tel">' +
+      '<label>Find ticket</label><input id="waQ" placeholder="Type ticket no. (e.g. 13), client name or mobile">' +
+      '<label>Ticket</label><select id="waT"></select>' +
+      '<div id="waInfo" class="waNote" style="background:#F1EDE3;border-radius:3px;padding:8px 10px;margin-top:8px"></div>' +
+      '<label>New status</label><div id="waSP" style="display:flex;flex-wrap:wrap;gap:6px"></div>' +
+      '<select id="waS" style="display:none"><option>Open</option><option>In Progress</option><option>On Hold</option><option>Resolved</option></select>' +
+      '<label>Extra note (optional — also added to ticket notes)</label><input id="waN" placeholder="e.g. Battery replaced, under observation 12 hrs">' +
+      '<label>Send to</label><input id="waTo" inputmode="tel"><div id="waAlt" class="waNote"></div>' +
       '<label>Message (you can edit)</label><textarea id="waTxt" style="min-height:150px"></textarea>' +
       '<div class="waRow"><button class="waBtn g" id="waGo">Update ticket &amp; send</button><button class="waBtn o" id="waOnly">Send only</button><button class="waBtn o" id="waClose">Close</button></div>' +
       '<div id="waRes" class="waNote">“Update ticket &amp; send” also changes the status in the CRM.</div>';
     wireHeader();
-    var tSel = box.querySelector("#waT"), sSel = box.querySelector("#waS"), note = box.querySelector("#waN"), to = box.querySelector("#waTo"), txt = box.querySelector("#waTxt");
+    var q = box.querySelector("#waQ"), tSel = box.querySelector("#waT"), sSel = box.querySelector("#waS"), sp = box.querySelector("#waSP"),
+      note = box.querySelector("#waN"), to = box.querySelector("#waTo"), alt = box.querySelector("#waAlt"), txt = box.querySelector("#waTxt"), info = box.querySelector("#waInfo");
+    function fillOptions(keep) {
+      var w = q.value.trim().toLowerCase(), wd = w.replace(/\D/g, "");
+      var list = ts.filter(function (t) {
+        if (!w) return true;
+        var c = clientById(t.clientId) || {};
+        if (/^#?\d{1,4}$/.test(w)) return ref(t) === "#" + w.replace("#", "");
+        return optLabel(t).toLowerCase().indexOf(w) >= 0 || (wd.length >= 4 && (rawPhones(c) + " " + (t.waPhone || "")).replace(/\D/g, "").indexOf(wd) >= 0);
+      });
+      tSel.innerHTML = list.length ? list.map(function (t) { return '<option value="' + esc(t.id) + '">' + esc(optLabel(t)) + "</option>"; }).join("")
+        : '<option value="">— No ticket matches —</option>';
+      if (keep && list.some(function (t) { return t.id === keep; })) tSel.value = keep;
+    }
     function cur() { return ts.find(function (t) { return t.id === tSel.value; }); }
+    function pills() {
+      var t = cur();
+      sp.innerHTML = ["Open", "In Progress", "On Hold", "Resolved"].map(function (k) {
+        var on = sSel.value === k, now = t && (t.status || "Open") === k;
+        return '<button type="button" class="waBtn ' + (on ? "" : "o") + '" data-s="' + k + '" style="padding:7px 12px">' + LBL[k] + (now ? " (now)" : "") + "</button>";
+      }).join("");
+      sp.querySelectorAll("button").forEach(function (b) { b.onclick = function () { sSel.value = b.getAttribute("data-s"); pills(); fill(false); }; });
+    }
     function fill(resetStatus) {
-      var t = cur(); if (!t) return;
-      var c = clientById(t.clientId);
-      if (resetStatus) { sSel.value = t.status === "Open" ? "In Progress" : t.status === "In Progress" ? "Resolved" : "Resolved"; to.value = t.waPhone || (c ? phonesOf(c)[0] || "" : ""); }
+      var t = cur();
+      if (!t) { info.textContent = ""; txt.value = ""; to.value = ""; alt.textContent = ""; sp.innerHTML = ""; return; }
+      var c = clientById(t.clientId), ph = c ? phonesOf(c) : [];
+      if (resetStatus) {
+        sSel.value = t.status === "Open" ? "In Progress" : t.status === "In Progress" ? "Resolved" : t.status === "On Hold" ? "In Progress" : "Resolved";
+        to.value = ph[0] || norm10(t.waPhone) || "";   /* client's primary mobile first */
+        var others = ph.slice(1).concat(t.waPhone && ph.indexOf(norm10(t.waPhone)) < 0 ? [norm10(t.waPhone)] : []).filter(Boolean);
+        alt.innerHTML = others.length ? "Other numbers: " + others.map(function (n) { return '<a href="#" data-n="' + n + '" style="color:inherit;font-weight:600">' + n + "</a>"; }).join(" · ") : "";
+        alt.querySelectorAll("a").forEach(function (a) { a.onclick = function (e) { e.preventDefault(); to.value = a.getAttribute("data-n"); }; });
+        pills();
+      }
+      var ln = lastNote(t), i = instById(t.instrumentId);
+      info.innerHTML = "<b>" + esc(c ? c.name : "?") + "</b>" + (i ? " · " + esc(instLabel(i)) : "") + " · now <b>" + esc(LBL[t.status] || t.status || "Open") + "</b>" +
+        (ln ? '<br><span style="color:#55606B">Latest note:</span> ' + esc(ln) : "");
       txt.value = updateMsg(c, t, sSel.value, note.value.trim());
     }
+    fillOptions(preId);
+    if (!preId && ts.length) { var first = ts[0]; tSel.value = first.id; }
+    q.oninput = function () { var k = tSel.value; fillOptions(k); fill(true); };
     tSel.onchange = function () { fill(true); };
-    sSel.onchange = note.oninput = function () { fill(false); };
+    note.oninput = function () { fill(false); };
     fill(true);
+    if (preId) setTimeout(function () { note.focus(); }, 50); else setTimeout(function () { q.focus(); }, 50);
     box.querySelector("#waClose").onclick = close;
     box.querySelector("#waOnly").onclick = function () { waOpen(to.value, txt.value); };
     box.querySelector("#waGo").onclick = function () {
@@ -2346,11 +2391,11 @@ lucide-react/dist/esm/lucide-react.mjs:
         return (arr || []).map(function (k) {
           if (k.id !== t.id) return k;
           var u = window.__tkStatus(k, st, nowLocal());
-          u.notes = (k.notes ? k.notes + "\n\n" : "") + "WhatsApp update " + niceNow() + ": status → " + st + (n ? " — " + n : "");
+          u.notes = (k.notes ? k.notes + "\n" : "") + niceNow() + " WhatsApp update: " + (LBL[st] || st) + (n ? " — " + n : "");
           return u;
         });
       });
-      box.querySelector("#waRes").innerHTML = '<span class="waOk">✓ ' + esc(ref(t)) + " set to " + esc(st) + " and WhatsApp opened.</span>";
+      box.querySelector("#waRes").innerHTML = '<span class="waOk">✓ ' + esc(ref(t)) + " set to " + esc(LBL[st] || st) + " and WhatsApp opened.</span>";
     };
   }
 
